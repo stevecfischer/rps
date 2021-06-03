@@ -1,0 +1,109 @@
+body {
+  background: radial-gradient(#1F3756, #141539);
+}
+
+header {
+  border: 2px solid #606e85;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 15px;
+  width: 800px;
+  margin: 10px auto;
+}
+header .logo {
+  font-size: 48px;
+}
+
+.score-box {
+  border-radius: 8px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFF;
+  color: #2a46c0;
+  justify-content: center;
+}
+.score-box .title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #2a46c0;
+}
+.score-box .score {
+  color: #3b4363;
+  font-size: 64px;
+}
+
+.circle-container {
+  position: relative;
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  padding: 0;
+  list-style: none;
+  margin: 5em auto 0;
+  border: solid 5px tomato;
+}
+.circle-container > * {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -3em;
+}
+.circle-container > *:nth-of-type(1) {
+  transform: rotate(0deg) translate(10em) rotate(0deg);
+}
+.circle-container > *:nth-of-type(2) {
+  transform: rotate(120deg) translate(10em) rotate(-120deg);
+}
+.circle-container > *:nth-of-type(3) {
+  transform: rotate(240deg) translate(10em) rotate(-240deg);
+}
+.circle-container img {
+  display: block;
+  max-width: 100%;
+  border-radius: 50%;
+  filter: grayscale(100%);
+  border: solid 5px tomato;
+  transition: 0.15s;
+}
+.circle-container img:hover {
+  filter: grayscale(0);
+}
+
+.game-piece {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-piece::before {
+  content: "";
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 50%;
+  left: 8px;
+  top: 8px;
+}
+.game-piece__rock {
+  background: radial-gradient(#dc2e4e, #dd405d);
+}
+.game-piece__scissors {
+  background: radial-gradient(#ec9e0e, #eca922);
+}
+.game-piece__paper {
+  background: radial-gradient(#4865f4, #5671f5);
+}
+.game-piece svg {
+  position: relative;
+  z-index: 999;
+}
+
+/*# sourceMappingURL=/app.3525348d.css.map */

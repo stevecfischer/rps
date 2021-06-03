@@ -1,0 +1,125 @@
+@use "sass:math";
+
+body {
+  background: radial-gradient(#1F3756, #141539);
+}
+
+header {
+  border: 2px solid hsl(217, 16%, 45%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 15px;
+  width: 800px;
+  margin: 10px auto;
+
+  .logo {
+    font-size: 48px;
+  }
+}
+
+.score-box{
+  border-radius: 8px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFF;
+  color: hsl(229, 64%, 46%);
+  justify-content: center;
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color:  hsl(229, 64%, 46%);
+  }
+
+  .score{
+    color: hsl(229, 25%, 31%);
+    font-size: 64px;
+  }
+}
+
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width:  $circle-size;
+  height: $circle-size;
+  border-radius: 50%;
+  padding: 0;
+  list-style: none;
+
+  > * {
+    display: block;
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    margin: math.div($item-size, 2) * -1;
+
+
+    $angle: math.div(360, $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: rotate($rot * 1deg) translate(math.div($circle-size, 2)) rotate($rot * -1deg);
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}
+
+.circle-container {
+  @include on-circle($item-count: 3, $circle-size: 20em, $item-size: 6em);
+  margin: 5em auto 0;
+  border: solid 5px tomato;
+
+  img {
+    display: block;
+    max-width: 100%;
+    border-radius: 50%;
+    filter: grayscale(100%);
+    border: solid 5px tomato;
+    transition: .15s;
+
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+}
+
+.game-piece{
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: "";
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    position: absolute;
+    border-radius: 50%;
+    left: 8px;
+    top: 8px;
+  }
+
+  &__rock {
+    background: radial-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  }
+  &__scissors {
+    background: radial-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+  }
+  &__paper {
+    background: radial-gradient(hsl(230, 89%, 62%) , hsl(230, 89%, 65%));
+  }
+
+  svg {
+    position: relative;
+    z-index: 999;
+  }
+}
