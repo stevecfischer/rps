@@ -6,7 +6,7 @@ export const getEl = (el) => {
   console.log(nodes2, 'noo2')
 };
 
-
+export const clientSide = typeof window !== 'undefined';
 //// Javascript version
 // document.querySelector("#notifications") // returns the first matching element
 // document.querySelectorAll("#notifications a") // returns an array of elements
