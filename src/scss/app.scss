@@ -1,4 +1,5 @@
 @use "sass:math";
+@use 'normalize';
 
 body {
   background: radial-gradient(#1F3756, #141539);
@@ -47,8 +48,8 @@ header {
   position: relative;
   width:  $circle-size;
   height: $circle-size;
-  border-radius: 50%;
   padding: 0;
+  border-radius: 50%;
   list-style: none;
 
   > * {
@@ -56,8 +57,9 @@ header {
     position: absolute;
     top:  50%;
     left: 50%;
+    width:  $item-size;
+    height: $item-size;
     margin: math.div($item-size, 2) * -1;
-
 
     $angle: math.div(360, $item-count);
     $rot: 0;
@@ -85,7 +87,8 @@ header {
     border: solid 5px tomato;
     transition: .15s;
 
-    &:hover {
+    &:hover,
+    &:active {
       filter: grayscale(0);
     }
   }

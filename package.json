@@ -2,27 +2,15 @@
   "name": "RPS",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "npm run clean && parcel public/index.html --out-dir development -p 3000",
-    "build": "rimraf ./dist && parcel build public/index.html --out-dir dist",
-    "clean": "rimraf ./development && rimraf ./.cache",
-    "compileSass": "sass ./scss/app.scss ./css/main.css --style=expanded --embed-sources",
-    "watch": "parcel watch src/components/*"
+    "serve": "npm run build && DEV_SERVER_PORT=4040 DEV_SERVER_ROOT=build dev-server",
+    "build": "cp index.html ./build/index.html && npm run compileSass",
+    "compileSass": "sass ./src/scss/app.scss ./build/css/main.css --style=expanded --embed-sources"
   },
   "author": "SCF",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/plugin-transform-runtime": "^7.14.3",
-    "@babel/runtime-corejs2": "^7.9.2",
-    "rimraf": "^3.0.2",
+    "dev-server": "^0.2.0",
     "sass": "^1.26.3"
-  },
-  "dependencies": {
-    "@svgr/parcel-plugin-svgr": "^5.5.0",
-    "parcel-bundler": "^1.12.3",
-    "vanillajs-browser-helpers": "^1.1.8",
-    "vanillajs-helpers": "^3.0.1"
   }
 }
