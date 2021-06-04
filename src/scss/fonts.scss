@@ -1,0 +1,21 @@
+$barlow-font-path: "../fonts/Barlow_Semi_Condensed";
+
+@font-face {
+  font-family: "Barlow";
+  src: url($barlow-font-path + "/BarlowSemiCondensed-Medium.tff") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Bold";
+  src: url($barlow-font-path + "/BarlowSemiCondensed-Bold.tff") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+}

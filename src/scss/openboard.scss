@@ -6,10 +6,10 @@
   }
 }
 
-@mixin on-circle($item-count, $circle-size, $item-size) {
+@mixin on-circle($item-count, $circle-size-width, $circle-size-height, $item-size) {
   position: relative;
-  width:  $circle-size;
-  height: $circle-size;
+  width:  $circle-size-width;
+  height: $circle-size-height;
   padding: 0;
   border-radius: 50%;
   list-style: none;
@@ -28,7 +28,7 @@
 
     @for $i from 1 through $item-count {
       &:nth-of-type(#{$i}) {
-        transform: rotate($rot * 1deg) translate(math.div($circle-size, 2)) rotate($rot * -1deg);
+        transform: rotate($rot * 1deg) translate(math.div($circle-size-height, 1.75)) rotate($rot * -1deg);
       }
 
       $rot: $rot + $angle;
@@ -37,7 +37,7 @@
 }
 
 .circle-of-death {
-  @include on-circle($item-count: 3, $circle-size: 400px, $item-size: 80px);
-  margin: 5em auto 0;
+  @include on-circle($item-count: 3, $circle-size-width: 400px, $circle-size-height: 350px, $item-size: 80px);
+  margin: 0 auto 0;
   //border: solid 5px tomato;
 }
