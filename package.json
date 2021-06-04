@@ -5,9 +5,9 @@
   "scripts": {
     "serve": "npm run build && DEV_SERVER_PORT=4040 DEV_SERVER_ROOT=build dev-server",
     "dev": "DEV_SERVER_PORT=4040 DEV_SERVER_ROOT=build dev-server",
-    "build": "rsync -a ./src/js ./build/ && cp index.html ./build/index.html && npm run compileSass && npm run optimizeSVG",
+    "build": "rm -r ./build && mkdir -p ./build/js && cp -r ./src/js ./build/ && cp index.html ./build/index.html && npm run compileSass && npm run optimizeSVG",
     "compileSass": "sass ./src/scss/app.scss ./build/css/main.css --style=expanded --embed-sources",
-    "clean": "rm -r ./build",
+    "clean": "rm -r ./build && mkdir -p ./build/js && cp -r ./src/js ./build/",
     "optimizeSVG": "svgo -f ./src/img/ -o ./build/img"
   },
   "author": "SCF",
