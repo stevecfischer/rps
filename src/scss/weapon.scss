@@ -1,0 +1,119 @@
+$base-unit: "px";
+$base-width: 40;
+$base-height: 40;
+
+@function weaponSize($multiplier,$direction) {
+  $new-multiplier: $multiplier * 1.5;
+
+  @if $direction == 'width' {
+    @return unquote(($base-width * $new-multiplier) + $base-unit);
+  }
+  @if $direction == 'height' {
+    @return unquote(($base-height * $new-multiplier) + $base-unit);
+  }
+}
+
+@function drawLine(){
+
+}
+
+
+.weapon-piece__paper {
+  position: relative;
+
+  &::before {
+    transform: rotate(
+                    90deg
+    );
+    position: absolute;
+    content: "";
+    width: 208px;
+    height: 10px;
+    background-color: #132443;
+    top: 212px;
+    right: -84px;
+    z-index: -1;
+  }
+}
+
+.weapon-piece__rock {
+  position: relative;
+
+  &::before {
+    transform: rotate(
+                    18deg
+    );
+    position: absolute;
+    content: "";
+    width: 250px;
+    height: 10px;
+    background-color: #132443;
+    top: 15px;
+    right: 25px;
+  }
+}
+
+.weapon-piece__scissors {
+  position: relative;
+
+  &::before {
+    transform: rotate(
+                    324deg
+    );
+    position: absolute;
+    content: "";
+    width: 281px;
+    height: 10px;
+    background-color: #132443;
+    top: -49px;
+    right: -270px;
+  }
+}
+
+.weapon-piece {
+
+  &__img-box {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: weaponSize(2, "width");
+    height: weaponSize(2, "height");
+    z-index: 999;
+
+    &::before {
+      content: "";
+      width: weaponSize(1.5, "width");
+      height: weaponSize(1.5, "height");
+      background-color: #fff;
+      position: absolute;
+      border-radius: 50%;
+      box-shadow:inset 0px 2px 8px #333;
+    }
+
+    img {
+      display: block;
+      filter: grayscale(100%);
+      transition: .15s;
+      width: weaponSize(1, "width");
+      height: weaponSize(1, "height");
+
+      &:hover,
+      &:active {
+        filter: grayscale(0);
+      }
+    }
+  }
+
+  .weapon-piece__img-box--rock {
+    background: radial-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  }
+
+  .weapon-piece__img-box--scissors {
+    background: radial-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+  }
+
+  .weapon-piece__img-box--paper {
+    background: radial-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  }
+}

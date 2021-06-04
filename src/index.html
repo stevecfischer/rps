@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Rock Paper Scissors</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<header>
+    <h1 class="logo">Rock<br/>Paper<br/>Scissors</h1>
+    <div class="score-box">
+        <div class="title">Score</div>
+        <div class="score">11</div>
+    </div>
+</header>
+<main>
+    <div class="open-board">
+        <ul class='game-board circle-of-death'>
+            <li class="weapon-piece weapon-piece__rock">
+                <div class="weapon-piece__img-box weapon-piece__img-box--rock">
+                    <img data-weapon="rock" src="/img/Rock.svg"/>
+                </div>
+            </li>
+            <li class="weapon-piece weapon-piece__scissors">
+                <div class="weapon-piece__img-box weapon-piece__img-box--scissors">
+                    <img data-weapon="scissors" src="/img/Scissors.svg"/>
+                </div>
+            </li>
+            <li class="weapon-piece weapon-piece__paper">
+                <div class="weapon-piece__img-box weapon-piece__img-box--paper">
+                    <img data-weapon="paper" src="/img/Paper.svg"/>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="battle-board hide">
+        <div class="battle-board__side user-side">
+            <div class="title">YOU PICKED</div>
+            <div class="weapon-piece weapon-piece__scissors"><img data-weapon="scissors" src="/img/Scissors.svg"/></div>
+        </div>
+        <div class="battle-results">
+            <div class="battle-results__text">YOU LOSE</div>
+            <button class="battle-results__play-again">PLAY AGAIN</button>
+        </div>
+        <div class="battle-board__side turk-side">
+            <div class="title">TURK PICKED</div>
+            <div class="weapon-piece weapon-piece__rock"><img data-weapon="rock" src="/img/Rock.svg"/></div>
+        </div>
+    </div>
+</main>
+<footer>
+    <button class="rules">RULES</button>
+</footer>
+
+<script type="application/javascript" src="/js/scripts.js"></script>
+</body>
+
+</html>
