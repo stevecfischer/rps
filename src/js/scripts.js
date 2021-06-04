@@ -56,31 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const nextStage = document.querySelector('.battle-board');
         nextStage.classList.toggle('hide');
-
-        // switch (stage) {
-        //     case 'stage-1':
-        //         const lastStage = document.querySelector('.open-board');
-        //         lastStage.classList.toggle('hide');
-        //
-        //         const nextStage = document.querySelector('.battle-board');
-        //         nextStage.classList.toggle('hide');
-        //
-        //         break;
-        //
-        //     case 'stage-2':
-        //         const lastStage = document.querySelector('.open-board');
-        //         lastStage.classList.toggle('hide');
-        //
-        //         const nextStage = document.querySelector('.battle-board');
-        //         nextStage.classList.toggle('hide');
-        //
-        //         break;
-        //     // case 'stage-3':
-        //     //     const lastStage = document.querySelector('.open-board');
-        //     default:
-        //         return "oops";
-        //
-        // }
     }
 
     const userChooses = (weapon) => {
@@ -104,9 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const turkChooses = () => {
-        updateState('turkWeapon', weapon);
         const weapons = ['rock', 'paper', 'scissors'];
         const weapon = weapons[Math.floor(Math.random() * weapons.length)];
+        updateState('turkWeapon', weapon);
 
         const turkSide = document.querySelector('.battle-board__side.turk-side');
         switch (weapon) {
@@ -232,14 +207,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // reset selected weapons
-        const battleBoardReset = document.querySelectorAll('.battle-board__side');
-        battleBoardReset.forEach((item) => {
-            Array.from(item.children).forEach(function(element) {
-                if(element.className.includes('weapon-piece')){
-                    element.remove();
-                }
-            });
-        })
+        // const battleBoardReset = document.querySelectorAll('.battle-board__side');
+        // battleBoardReset.forEach((item) => {
+        //     Array.from(item.children).forEach(function(element) {
+        //         if(element.className.includes('weapon-piece')){
+        //             element.remove();
+        //         }
+        //     });
+        // })
         // for (let i = 0; i < battleResults.children.length; i++) {
         //     console.log(battleResults.children[i]);
         //     battleResults.children[i].remove();
@@ -273,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     const gameBoard = document.querySelector('.game-board');
-    const pieces = gameBoard.getElementsByClassName('game-piece');
     gameBoard.addEventListener('click', (e) => {
         if (e.target && e.target.dataset && e.target.dataset.weapon) {
             console.log('yes!!!');
