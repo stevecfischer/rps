@@ -124,5 +124,27 @@ header {
   svg {
     position: relative;
     z-index: 999;
+    width: 6em;
+    height: 6em;
+  }
+
+  path {
+    fill: #000;
+    stroke: #111;
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
   }
 }
+
+//.game-piece__rock svg {
+//  width: 48px;
+//  height: 48px;
+//}
+//.game-piece__scissors svg {
+//  width: 49px;
+//  height: 59px;
+//}
+//.game-piece__paper svg {
+//  width: 51px;
+//  height: 58px;
+//}

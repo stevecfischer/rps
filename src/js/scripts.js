@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(e.target && e.target.dataset && e.target.dataset.weapon){
             console.log('yes!!!');
         }else{
-            console.log('booo');
+            console.log('booo!!');
         }
     });
 
