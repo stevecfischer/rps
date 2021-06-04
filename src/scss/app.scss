@@ -1,8 +1,37 @@
-@use "sass:math";
 @use 'normalize';
+@use 'openboard';
+@use 'battleboard';
+@use "weapon";
+@use "battleresults";
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
 
 body {
   background: radial-gradient(#1F3756, #141539);
+  width:1366px;
+  margin: auto;
 }
 
 header {
@@ -14,17 +43,18 @@ header {
   color: #fff;
   padding: 15px;
   width: 800px;
-  margin: 10px auto;
+  margin: 10px auto 100px;
 
   .logo {
     font-size: 48px;
+    margin: 0;
   }
 }
 
 .score-box{
   border-radius: 8px;
   width: 200px;
-  height: 200px;
+  height: 125px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,107 +74,17 @@ header {
   }
 }
 
-@mixin on-circle($item-count, $circle-size, $item-size) {
-  position: relative;
-  width:  $circle-size;
-  height: $circle-size;
-  padding: 0;
-  border-radius: 50%;
-  list-style: none;
-
-  > * {
-    display: block;
-    position: absolute;
-    top:  50%;
-    left: 50%;
-    width:  $item-size;
-    height: $item-size;
-    margin: math.div($item-size, 2) * -1;
-
-    $angle: math.div(360, $item-count);
-    $rot: 0;
-
-    @for $i from 1 through $item-count {
-      &:nth-of-type(#{$i}) {
-        transform: rotate($rot * 1deg) translate(math.div($circle-size, 2)) rotate($rot * -1deg);
-      }
-
-      $rot: $rot + $angle;
-    }
-  }
+main {
+  margin-bottom: 100px;
 }
 
-.circle-container {
-  @include on-circle($item-count: 3, $circle-size: 20em, $item-size: 6em);
-  margin: 5em auto 0;
-  border: solid 5px tomato;
-
-  img {
-    display: block;
-    max-width: 100%;
-    border-radius: 50%;
-    filter: grayscale(100%);
-    border: solid 5px tomato;
-    transition: .15s;
-
-    &:hover,
-    &:active {
-      filter: grayscale(0);
-    }
+footer{
+  .rules {
+    float: right;
+    padding: 5px 15px;
+    border-radius: 8px;
+    border: 1px solid #fff;
+    color: #FFF;
+    background-color: transparent;
   }
 }
-
-.game-piece{
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &::before {
-    content: "";
-    width: 80px;
-    height: 80px;
-    background-color: #fff;
-    position: absolute;
-    border-radius: 50%;
-    left: 8px;
-    top: 8px;
-  }
-
-  &__rock {
-    background: radial-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
-  }
-  &__scissors {
-    background: radial-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
-  }
-  &__paper {
-    background: radial-gradient(hsl(230, 89%, 62%) , hsl(230, 89%, 65%));
-  }
-
-  svg {
-    position: relative;
-    z-index: 999;
-    width: 6em;
-    height: 6em;
-  }
-
-  path {
-    fill: #000;
-    stroke: #111;
-    stroke-width: 2;
-    vector-effect: non-scaling-stroke;
-  }
-}
-
-//.game-piece__rock svg {
-//  width: 48px;
-//  height: 48px;
-//}
-//.game-piece__scissors svg {
-//  width: 49px;
-//  height: 59px;
-//}
-//.game-piece__paper svg {
-//  width: 51px;
-//  height: 58px;
-//}

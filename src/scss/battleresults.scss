@@ -1,0 +1,16 @@
+.battle-results{
+  text-align: center;
+
+  &__text {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  &__play-again {
+    padding: 5px 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #A85F71;
+  }
+}
