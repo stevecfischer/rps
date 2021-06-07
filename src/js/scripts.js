@@ -61,16 +61,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const userChooses = (weapon) => {
         updateState('userWeapon', weapon);
         const userSide = document.querySelector('.battle-board__side.user-side');
-
+        console.log(`user picks ${weapon}`);
         switch (weapon) {
             case 'rock':
-                userSide.appendChild(RockDom);
+                userSide.insertAdjacentHTML("beforeend", RockDom);
                 break;
             case 'scissors':
-                userSide.appendChild(ScissorsDom);
+                userSide.insertAdjacentHTML("beforeend", ScissorsDom);
                 break;
             case 'paper':
-                userSide.appendChild(PaperDom);
+                userSide.insertAdjacentHTML("beforeend", PaperDom);
                 break;
             default:
                 break;
@@ -82,17 +82,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const weapons = ['rock', 'paper', 'scissors'];
         const weapon = weapons[Math.floor(Math.random() * weapons.length)];
         updateState('turkWeapon', weapon);
-
+        console.log(`turk picks ${weapon}`);
         const turkSide = document.querySelector('.battle-board__side.turk-side');
         switch (weapon) {
             case 'rock':
-                turkSide.appendChild(RockDom);
+                turkSide.insertAdjacentHTML("beforeend", RockDom);
                 break;
             case 'scissors':
-                turkSide.appendChild(ScissorsDom);
+                turkSide.insertAdjacentHTML("beforeend", ScissorsDom);
                 break;
             case 'paper':
-                turkSide.appendChild(PaperDom);
+                turkSide.insertAdjacentHTML("beforeend", PaperDom);
                 break;
             default:
                 break;
@@ -103,11 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const battleResults = document.getElementById('battle-results');
         const userWeapon = getState('userWeapon');
         const turkWeapon = getState('turkWeapon');
-        if (userWeapon === turkWeapon) {
-            battleResults.appendChild(tieGame)
-            console.log("its a tie");
-            return;
-        }
+
         const str = [userWeapon, turkWeapon].join('_');
         const resultsTable = {
             paper_rock: 'user',
@@ -118,61 +114,18 @@ document.addEventListener('DOMContentLoaded', function () {
             paper_scissors: 'turk',
         }
 
-        console.log(resultsTable[str]);
         if (resultsTable[str] === 'user') {
-            battleResults.appendChild(userWins)
+            battleResults.insertAdjacentHTML('afterbegin', userWins);
             updateScore('user');
         }
 
         if (resultsTable[str] === 'turk') {
-            battleResults.appendChild(turkWins)
+            battleResults.insertAdjacentHTML('afterbegin', turkWins);
             updateScore('turk');
         }
-    }
 
-    const getWinner2 = () => {
-        const battleResults = document.getElementById('battle-results');
-
-        const userWeapon = 'scissors';
-        const turkWeapon = 'rock';
-        const weaponsObj = {
-            [userWeapon]: 'user',
-            [turkWeapon]: 'turk',
-        };
-        const weaponsArray = [userWeapon, turkWeapon];
         if (userWeapon === turkWeapon) {
-            console.log('it is a tie');
-            battleResults.appendChild(tieGame)
-            return;
-        }
-
-        if (weaponsArray.includes('rock') && weaponsArray.includes('scissors')) {
-            const winner = weaponsObj['rock'];
-            if (winner === 'user') {
-                battleResults.appendChild(userWins)
-            } else {
-                battleResults.appendChild(turkWins)
-            }
-        }
-
-
-        if (weaponsArray.includes('paper') && weaponsArray.includes('scissors')) {
-            const winner = weaponsObj['scissors'];
-            if (winner === 'user') {
-                battleResults.appendChild(userWins)
-            } else {
-                battleResults.appendChild(turkWins)
-            }
-        }
-
-
-        if (weaponsArray.includes('rock') && weaponsArray.includes('paper')) {
-            const winner = weaponsObj['paper'];
-            if (winner === 'user') {
-                battleResults.appendChild(userWins)
-            } else {
-                battleResults.appendChild(turkWins)
-            }
+            battleResults.insertAdjacentHTML('afterbegin', tieGame);
         }
     }
 
@@ -184,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const oldScore = getState('score');
+        const oldScore = Number(getState('score'));
         let newScore;
         if(winner === 'user'){
             newScore = oldScore + 1;
@@ -205,20 +158,13 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(element)
         });
 
-
-        // reset selected weapons
-        // const battleBoardReset = document.querySelectorAll('.battle-board__side');
-        // battleBoardReset.forEach((item) => {
-        //     Array.from(item.children).forEach(function(element) {
-        //         if(element.className.includes('weapon-piece')){
-        //             element.remove();
-        //         }
-        //     });
-        // })
-        // for (let i = 0; i < battleResults.children.length; i++) {
-        //     console.log(battleResults.children[i]);
-        //     battleResults.children[i].remove();
-        // }
+        const clearPicks = () => {
+            const u = document.querySelector('.battle-board__side.user-side');
+            u.querySelector('.weapon-piece').remove();
+            const t = document.querySelector('.battle-board__side.turk-side');
+            t.querySelector('.weapon-piece').remove();
+        }
+        clearPicks();
     }
 
     const init = () => {
@@ -233,28 +179,30 @@ document.addEventListener('DOMContentLoaded', function () {
         updateScore()
     }
 
-    const PaperDom = document.createRange().createContextualFragment('<div class="weapon-piece weapon-piece__paper"><div class="weapon-piece__img-box weapon-piece__img-box--paper"><img data-weapon="paper" src="/img/Paper.svg"/></div></div>');
 
-    const RockDom = document.createRange().createContextualFragment('<div class="weapon-piece weapon-piece__rock"><div class="weapon-piece__img-box weapon-piece__img-box--rock"><img data-weapon="rock" src="/img/Rock.svg"/></div><Rock');
+    const PaperDom = '<div class="weapon-piece weapon-piece__paper"><div class="weapon-piece__img-box weapon-piece__img-box--paper"><img data-weapon="paper" src="/img/Paper.svg"/></div></div>';
 
-    const ScissorsDom = document.createRange().createContextualFragment('<div class="weapon-piece weapon-piece__scissors"><div class="weapon-piece__img-box weapon-piece__img-box--scissors"><img data-weapon="scissors" src="/img/Scissors.svg"/></div></div>');
+    const RockDom = '<div class="weapon-piece weapon-piece__rock"><div class="weapon-piece__img-box weapon-piece__img-box--rock"><img data-weapon="rock" src="/img/Rock.svg"/></div><Rock';
 
-    const userWins = document.createRange().createContextualFragment('<div class="battle-results__text">YOU WIN</div><button class="battle-results__play-again">PLAY AGAIN</button>');
-    const turkWins = document.createRange().createContextualFragment('<div class="battle-results__text">TURK WINS</div><button class="battle-results__play-again">PLAY AGAIN</button>');
-    const tieGame = document.createRange().createContextualFragment('<div class="battle-results__text">IT\'S A TIE</div><button class="battle-results__play-again">PLAY AGAIN</button>');
+    const ScissorsDom = '<div class="weapon-piece weapon-piece__scissors"><div class="weapon-piece__img-box weapon-piece__img-box--scissors"><img data-weapon="scissors" src="/img/Scissors.svg"/></div></div>';
+
+    const userWins = '<div class="battle-results__text">YOU WIN</div><button class="battle-results__play-again">PLAY AGAIN</button>';
+    const turkWins = '<div class="battle-results__text">TURK WINS</div><button class="battle-results__play-again">PLAY AGAIN</button>';
+    const tieGame = '<div class="battle-results__text">IT\'S A TIE</div><button class="battle-results__play-again">PLAY AGAIN</button>';
 
 
     init();
 
 
     const gameBoard = document.querySelector('.game-board');
+    let turns = 1;
     gameBoard.addEventListener('click', (e) => {
         if (e.target && e.target.dataset && e.target.dataset.weapon) {
-            console.log('yes!!!');
+            console.log(`turn number ${turns}`);
+            turns += 1;
             changeStage('stage-2');
             userChooses(e.target.dataset.weapon);
             turkChooses();
-            // changeStage('stage-3');
             getWinner()
         } else {
             console.log('booo!!');
