@@ -17,7 +17,6 @@ $base-height: 40;
 
 }
 
-
 .weapon-piece__paper {
   position: relative;
 
@@ -115,5 +114,11 @@ $base-height: 40;
 
   .weapon-piece__img-box--paper {
     background: radial-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  }
+}
+
+#stage-2 .weapon-piece {
+  &::before {
+    display: none;
   }
 }

@@ -13,12 +13,12 @@
     <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body id="stage-1">
 <header>
     <h1 class="logo">Rock<br/>Paper<br/>Scissors</h1>
     <div class="score-box">
         <div class="title">Score</div>
-        <div class="score">11</div>
+        <div class="score"></div>
     </div>
 </header>
 <main>
@@ -44,15 +44,10 @@
     <div class="battle-board hide">
         <div class="battle-board__side user-side">
             <div class="title">YOU PICKED</div>
-            <div class="weapon-piece weapon-piece__scissors"><img data-weapon="scissors" src="/img/Scissors.svg"/></div>
         </div>
-        <div class="battle-results">
-            <div class="battle-results__text">YOU LOSE</div>
-            <button class="battle-results__play-again">PLAY AGAIN</button>
-        </div>
+        <div id="battle-results" class="battle-results"></div>
         <div class="battle-board__side turk-side">
             <div class="title">TURK PICKED</div>
-            <div class="weapon-piece weapon-piece__rock"><img data-weapon="rock" src="/img/Rock.svg"/></div>
         </div>
     </div>
 </main>
