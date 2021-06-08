@@ -1,3 +1,9 @@
+import * as CONST from './js/const.js';
+import './style.css';
+import Rock from './img/Rock.svg';
+import Paper from './img/Paper.svg';
+import Scissors from './img/Scissors.svg';
+
 document.addEventListener('DOMContentLoaded', function () {
     /**
      * user clicks on weapon
@@ -64,18 +70,17 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(`user picks ${weapon}`);
         switch (weapon) {
             case 'rock':
-                userSide.insertAdjacentHTML("beforeend", RockDom);
+                userSide.insertAdjacentHTML("beforeend", CONST.RockDom);
                 break;
             case 'scissors':
-                userSide.insertAdjacentHTML("beforeend", ScissorsDom);
+                userSide.insertAdjacentHTML("beforeend", CONST.ScissorsDom);
                 break;
             case 'paper':
-                userSide.insertAdjacentHTML("beforeend", PaperDom);
+                userSide.insertAdjacentHTML("beforeend", CONST.PaperDom);
                 break;
             default:
                 break;
         }
-
     }
 
     const turkChooses = () => {
@@ -86,13 +91,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const turkSide = document.querySelector('.battle-board__side.turk-side');
         switch (weapon) {
             case 'rock':
-                turkSide.insertAdjacentHTML("beforeend", RockDom);
+                turkSide.insertAdjacentHTML("beforeend", CONST.RockDom);
                 break;
             case 'scissors':
-                turkSide.insertAdjacentHTML("beforeend", ScissorsDom);
+                turkSide.insertAdjacentHTML("beforeend", CONST.ScissorsDom);
                 break;
             case 'paper':
-                turkSide.insertAdjacentHTML("beforeend", PaperDom);
+                turkSide.insertAdjacentHTML("beforeend", CONST.PaperDom);
                 break;
             default:
                 break;
@@ -115,17 +120,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (resultsTable[str] === 'user') {
-            battleResults.insertAdjacentHTML('afterbegin', userWins);
+            battleResults.insertAdjacentHTML('afterbegin', CONST.userWins);
             updateScore('user');
         }
 
         if (resultsTable[str] === 'turk') {
-            battleResults.insertAdjacentHTML('afterbegin', turkWins);
+            battleResults.insertAdjacentHTML('afterbegin', CONST.turkWins);
             updateScore('turk');
         }
 
         if (userWeapon === turkWeapon) {
-            battleResults.insertAdjacentHTML('afterbegin', tieGame);
+            battleResults.insertAdjacentHTML('afterbegin', CONST.tieGame);
         }
     }
 
@@ -167,6 +172,28 @@ document.addEventListener('DOMContentLoaded', function () {
         clearPicks();
     }
 
+    const setOpenBoard = () => {
+        const openBoard = document.querySelector('.open-board');
+        const openBoardWeapons = `<ul class='game-board circle-of-death'>
+            <li class="weapon-piece weapon-piece__rock">
+                <div class="weapon-piece__img-box weapon-piece__img-box--rock">
+                    <img data-weapon="rock" src="${Rock}"/>
+                </div>
+            </li>
+            <li class="weapon-piece weapon-piece__scissors">
+                <div class="weapon-piece__img-box weapon-piece__img-box--scissors">
+                    <img data-weapon="scissors" src="${Scissors}"/>
+                </div>
+            </li>
+            <li class="weapon-piece steve weapon-piece__paper">
+                <div class="weapon-piece__img-box weapon-piece__img-box--paper">
+                    <img data-weapon="paper" src="${Paper}"/>
+                </div>
+            </li>
+        </ul>`;
+        openBoard.insertAdjacentHTML("afterbegin", openBoardWeapons);
+    }
+
     const init = () => {
         /**
          * set default state
@@ -176,19 +203,9 @@ document.addEventListener('DOMContentLoaded', function () {
          *
          */
         setState();
-        updateScore()
+        setOpenBoard();
+        updateScore();
     }
-
-
-    const PaperDom = '<div class="weapon-piece weapon-piece__paper"><div class="weapon-piece__img-box weapon-piece__img-box--paper"><img data-weapon="paper" src="/img/Paper.svg"/></div></div>';
-
-    const RockDom = '<div class="weapon-piece weapon-piece__rock"><div class="weapon-piece__img-box weapon-piece__img-box--rock"><img data-weapon="rock" src="/img/Rock.svg"/></div><Rock';
-
-    const ScissorsDom = '<div class="weapon-piece weapon-piece__scissors"><div class="weapon-piece__img-box weapon-piece__img-box--scissors"><img data-weapon="scissors" src="/img/Scissors.svg"/></div></div>';
-
-    const userWins = '<div class="battle-results__text">YOU WIN</div><button class="battle-results__play-again">PLAY AGAIN</button>';
-    const turkWins = '<div class="battle-results__text">TURK WINS</div><button class="battle-results__play-again">PLAY AGAIN</button>';
-    const tieGame = '<div class="battle-results__text">IT\'S A TIE</div><button class="battle-results__play-again">PLAY AGAIN</button>';
 
 
     init();

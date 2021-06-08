@@ -9,16 +9,26 @@
     "build": "npm run compileSass && npm run optimizeSVG && cp -r ./src/* ./build/",
     "clean": "rm -r ./build && mkdir -p ./build/js && cp -r ./src/js ./build/",
     "compileSass": "sass ./src/scss/app.scss ./build/css/main.css --style=compressed --embed-sources",
-    "optimizeSVG": "svgo -f ./src/img/ -o ./build/img"
+    "optimizeSVG": "svgo -f ./src/img/ -o ./build/img",
+    "webpack": "webpack --config webpack.config.js"
   },
   "author": "SCF",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-loader": "^8.2.2",
+    "browser-sync": "^2.26.14",
+    "css-loader": "^5.2.6",
     "dev-server": "^0.2.0",
-    "sass": "^1.26.3",
-    "svgo": "^2.3.0"
-  },
-  "dependencies": {
-    "watch": "^1.0.2"
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "sass": "^1.34.1",
+    "sass-loader": "^12.0.0",
+    "style-loader": "^2.0.0",
+    "svgo": "^2.3.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }
