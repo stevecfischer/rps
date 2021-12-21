@@ -1,0 +1,92 @@
+@use 'normalize';
+@use 'fonts';
+@use 'openboard';
+@use 'battleboard';
+@use "weapon";
+@use "battleresults";
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+body {
+  background: radial-gradient(#1F3756, #141539);
+  width:1366px;
+  margin: auto;
+}
+
+header {
+  border: 2px solid hsl(217, 16%, 45%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 15px;
+  width: 800px;
+  margin: 10px auto 25px;
+
+  .logo {
+    font-size: 48px;
+    margin: 0;
+  }
+}
+
+.score-box{
+  border-radius: 8px;
+  width: 200px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFF;
+  color: hsl(229, 64%, 46%);
+  justify-content: center;
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color:  hsl(229, 64%, 46%);
+  }
+
+  .score{
+    color: hsl(229, 25%, 31%);
+    font-size: 64px;
+  }
+}
+
+main {
+  height: 500px;
+  margin: 0 auto 50px;
+}
+
+footer{
+  .rules {
+    float: right;
+    padding: 5px 15px;
+    border-radius: 8px;
+    border: 1px solid #fff;
+    color: #FFF;
+    background-color: transparent;
+  }
+}
